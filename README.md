@@ -8,6 +8,8 @@ on how to build and use EDJX C++ Serverless functions.
 
 ## Version
 
+EDJX C++ SDK version 0.1.0
+
 This EDJX C++ SDK build was built against WASI SDK version 12
 (see [wasi-sdk-12 release page](https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-12)).
 

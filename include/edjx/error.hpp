@@ -1,5 +1,7 @@
 #pragma once
 
+#include "http.hpp"
+
 namespace edjx {
 
 /// Error-handling enums and utilities.
@@ -137,7 +139,9 @@ namespace error {
         /// The required content does not exist or has been deleted.
         ContentDeleted,
         /// The attributes are invalid.
-        InvalidAttributes
+        InvalidAttributes,
+        /// Resource limit exceeded.
+        ResourceLimit
     };
 
     /**
@@ -172,6 +176,38 @@ namespace error {
                 return "Storage: content does not exist or was deleted";
             case StorageError::InvalidAttributes:
                 return "Storage: invalid attributes";
+            case StorageError::ResourceLimit:
+                return "Storage: Resource limit exceeded";
+        }
+    }
+
+    /**
+     * @brief Convert an edjx::error::StorageError into an HTTP status code
+     * 
+     * @param e Storage error value
+     * @return HTTP status code corresponding to the storage error value
+     */
+    inline edjx::http::HttpStatusCode to_http_status_code(StorageError e) {
+        switch (e) {
+            case StorageError::Success:
+                return 200;
+            case StorageError::EmptyContent:
+            case StorageError::MissingFileName:
+            case StorageError::MissingBucketID:
+            case StorageError::MissingAttributes:
+            case StorageError::InvalidAttributes:
+                return 400; //HTTP_STATUS_BAD_REQUEST;
+            case StorageError::ContentNotFound:
+            case StorageError::ContentDeleted:
+                return 404; //HTTP_STATUS_NOT_FOUND;
+            case StorageError::UnAuthorized:
+                return 403; //HTTP_STATUS_FORBIDDEN;
+            case StorageError::ResourceLimit:
+                return 422; //HTTP_STATUS_UNPROCESSABLE_ENTITY,
+            case StorageError::DeletedBucketID:
+            case StorageError::InternalError:
+            case StorageError::SystemError:
+                return 500; //HTTP_STATUS_INTERNAL_SERVER_ERROR;
         }
     }
 

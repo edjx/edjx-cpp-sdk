@@ -1,0 +1,37 @@
+name: pull request for release
+
+on:
+  push:
+    branches: [stage-*]
+
+jobs:
+  pull-request:
+    name: Create Pull Request for Staged Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    - name: Parse SDK Version
+      run: |
+        EDJX_SDK_VERSION="${GITHUB_REF#*stage-}"
+        echo "EDJX_SDK_VERSION=${EDJX_SDK_VERSION}" >> "${GITHUB_ENV}"
+        echo "SDK version ${EDJX_SDK_VERSION} detected"
+
+    - name: Create Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: main
+        pr_title: Release ${{ env.EDJX_SDK_VERSION }}
+        pr_body: |
+          This is an automatic pull request for the EDJX C++ SDK release ${{ env.EDJX_SDK_VERSION }} from the ${{ github.ref }} branch.
+
+          To publish this release:
+          - Merge this pull request
+          - Create and push a \`${{ env.EDJX_SDK_VERSION }}\` tag
+
+          This should then happen automatically:
+          - Create a release from the \`${{ env.EDJX_SDK_VERSION }}\` tag
+          - Attach files from the \`distrib/\` folder as assets to the release
+        github_token: ${{ secrets.GITHUB_TOKEN }}

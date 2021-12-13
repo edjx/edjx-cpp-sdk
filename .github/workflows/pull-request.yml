@@ -1,0 +1,37 @@
+on:
+  push:
+    branches: [stage-*]
+
+jobs:
+  set_env:
+    name: Set variables
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get SDK release version
+      run: |
+        EDJX_SDK_VERSION="${GITHUB_REF#*stage-}"
+        echo "EDJX_SDK_VERSION=${EDJX_SDK_VERSION}" >> "${GITHUB_ENV}"
+        echo "SDK version ${EDJX_SDK_VERSION} detected"
+    outputs:
+      edjx_sdk_version: ${{ env.EDJX_SDK_VERSION }}
+
+  pull-request:
+    runs-on: ubuntu-latest
+    needs: [set_env]
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: main
+        pr_title: Merge release ${{ needs.set_env.outputs.edjx_sdk_version }}
+        pr_body: |
+          This is an automatic pull request for EDJX C++ SDK release ${{ needs.set_env.outputs.edjx_sdk_version }}.
+
+          To publish this release:
+          - Test and verify the contents of the `${{ github.ref }}` branch
+          - Merge this pull request
+          - Create and push a `${{ needs.set_env.outputs.edjx_sdk_version }}` tag
+          - Create a release from the `${{ needs.set_env.outputs.edjx_sdk_version }}` tag
+          - Attach files from the `distrib/` folder as assets to the release
+        github_token: ${{ secrets.GITHUB_TOKEN }}

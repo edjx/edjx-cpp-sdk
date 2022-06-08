@@ -19,20 +19,27 @@ Each build of the EDJX C++ SDK targets a specific WASI SDK version.
 For example, `wasi-12` releases of the EDJX C++ SDK should be used with
 [WASI SDK 12](https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-12).
 
-To install the EDJX C++ SDK system-wide into the `/opt` directory so that
-it can be used to build serverless applications, run:
+The following commands install the EDJX C++ SDK into an `edjx/edjx-cpp-sdk` directory in the user's home directory:
 
     EDJX_SDK_VERSION=v21.11.1
     WASI_SDK_VERSION=12
 
-    wget https://github.com/edjx/edjx-cpp-sdk/releases/download/${EDJX_SDK_VERSION}/edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz
-    tar -xvf edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz -C /opt
-    ln -s /opt/edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION} /opt/edjx-cpp-sdk
+    INSTALLATION_DIR="${HOME}/edjx"
+    
+    mkdir -p "$INSTALLATION_DIR"
+    cd "$INSTALLATION_DIR"
+    
+    curl -L -O "https://github.com/edjx/edjx-cpp-sdk/releases/download/${EDJX_SDK_VERSION}/edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz"
+    tar -xvf "edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz"
 
-or alternatively (downloads the latest EDJX C++ SDK release, to be used with
-[WASI SDK 12](https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-12)):
+    rm -f edjx-cpp-sdk
+    ln -s "edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}" edjx-cpp-sdk
 
-    git clone --depth 1 https://github.com/edjx/edjx-cpp-sdk.git /opt/edjx-cpp-sdk
+Alternatively, one can clone this repository to obtain the latest EDJX C++ SDK. Be sure to check the [WASI_SDK_VERSION](WASI_SDK_VERSION) file to find the WASI SDK version against which the EDJX C++ SDK was built.
+
+    INSTALLATION_DIR="${HOME}/edjx"
+
+    git clone --depth 1 "https://github.com/edjx/edjx-cpp-sdk.git" "${INSTALLATION_DIR}/edjx-cpp-sdk"
 
 With the `--depth 1` argument, only the latest EDJX C++ SDK build for the
 specific WASI SDK version is downloaded. Without the `--depth` parameter

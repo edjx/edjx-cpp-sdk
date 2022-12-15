@@ -11,37 +11,4 @@ serverless functions. Please see
 [EDJX C++ SDK examples](https://github.com/edjx/edjsamples-cpp)
 on how to build and use EDJX C++ Serverless functions.
 
-## Installation Instructions
-
-The EDJX C++ SDK can be directly downloaded from the
-[release page](https://github.com/edjx/edjx-cpp-sdk/releases).
-Each build of the EDJX C++ SDK targets a specific WASI SDK version.
-For example, `wasi-12` releases of the EDJX C++ SDK should be used with
-[WASI SDK 12](https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-12).
-
-The following commands install the EDJX C++ SDK into an `edjx/edjx-cpp-sdk` directory in the user's home directory:
-
-    EDJX_SDK_VERSION=v21.11.1
-    WASI_SDK_VERSION=12
-
-    INSTALLATION_DIR="${HOME}/edjx"
-    
-    mkdir -p "$INSTALLATION_DIR"
-    cd "$INSTALLATION_DIR"
-    
-    curl -L -O "https://github.com/edjx/edjx-cpp-sdk/releases/download/${EDJX_SDK_VERSION}/edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz"
-    tar -xvf "edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}.tar.gz"
-
-    rm -f edjx-cpp-sdk
-    ln -s "edjx-cpp-sdk-${EDJX_SDK_VERSION}-wasi-${WASI_SDK_VERSION}" edjx-cpp-sdk
-
-Alternatively, one can clone this repository to obtain the latest EDJX C++ SDK. Be sure to check the [WASI_SDK_VERSION](WASI_SDK_VERSION) file to find the WASI SDK version against which the EDJX C++ SDK was built.
-
-    INSTALLATION_DIR="${HOME}/edjx"
-
-    git clone --depth 1 "https://github.com/edjx/edjx-cpp-sdk.git" "${INSTALLATION_DIR}/edjx-cpp-sdk"
-
-With the `--depth 1` argument, only the latest EDJX C++ SDK build for the
-specific WASI SDK version is downloaded. Without the `--depth` parameter
-specified, git history with previous EDJX C++ SDK releases will also be
-downloaded.
+See the [EDJX Documentation](https://docs.edjx.net/docs/latest/serverless/create_cpp_function.html#_prerequisites) for more information about installing this SDK on your system.

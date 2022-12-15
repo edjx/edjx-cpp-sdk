@@ -11,5 +11,4 @@ serverless functions. Please see
 [EDJX C++ SDK examples](https://github.com/edjx/edjsamples-cpp)
 on how to build and use EDJX C++ Serverless functions.
 
-See the [EDJX Documentation](https://docs.edjx.net) for more information about installing this SDK on your system.
-
+See the [EDJX Documentation](https://docs.edjx.net/docs/latest/serverless/create_cpp_function.html#_prerequisites) for more information about installing this SDK on your system.

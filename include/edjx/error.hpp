@@ -37,7 +37,14 @@ namespace error {
         /// An invalid HTTP status code was provided.
         HTTPInvalidStatusCode,
         /// An invalid HTTP version was provided.
-        HTTPInvalidVersion
+        HTTPInvalidVersion,
+
+        /// HTTP fetch response not found.
+        HTTPFetchResponseNotFound,
+        /// HTTP fetch request failed.
+        HTTPFetchRequestFailed,
+        /// HTTP Channel is closed.
+        HTTPChannelClosed
     };
 
     /**
@@ -74,6 +81,13 @@ namespace error {
                 return "HTTP: invalid response status code";
             case HttpError::HTTPInvalidVersion:
                 return "HTTP: invalid HTTP version";
+
+            case HttpError::HTTPFetchResponseNotFound:
+                return "Fetch: HTTP fetch response not found";
+            case HttpError::HTTPFetchRequestFailed:
+                return "Fetch: HTTP fetch request failed";
+            case HttpError::HTTPChannelClosed:
+                return "HTTP: Channel closed";
         }
     }
 
@@ -141,7 +155,12 @@ namespace error {
         /// The attributes are invalid.
         InvalidAttributes,
         /// Resource limit exceeded.
-        ResourceLimit
+        ResourceLimit,
+
+        /// Storage response not found.
+        StorageResponseNotFound,
+        /// Storage channel closed.
+        StorageChannelClosed
     };
 
     /**
@@ -178,6 +197,11 @@ namespace error {
                 return "Storage: invalid attributes";
             case StorageError::ResourceLimit:
                 return "Storage: Resource limit exceeded";
+
+            case StorageError::StorageResponseNotFound:
+                return "Storage: Storage response not found";
+            case StorageError::StorageChannelClosed:
+                return "Storage: Storage channel closed";
         }
     }
 
@@ -199,6 +223,7 @@ namespace error {
                 return 400; //HTTP_STATUS_BAD_REQUEST;
             case StorageError::ContentNotFound:
             case StorageError::ContentDeleted:
+            case StorageError::StorageResponseNotFound:
                 return 404; //HTTP_STATUS_NOT_FOUND;
             case StorageError::UnAuthorized:
                 return 403; //HTTP_STATUS_FORBIDDEN;
@@ -207,7 +232,59 @@ namespace error {
             case StorageError::DeletedBucketID:
             case StorageError::InternalError:
             case StorageError::SystemError:
+            case StorageError::StorageChannelClosed:
                 return 500; //HTTP_STATUS_INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    /**
+     * @brief Enum that describes values returned by streaming functions.
+     */
+    enum class StreamError {
+        /// Stream function completed successfully.
+        Success = 0,
+        /// End of stream was reached.
+        EndOfStream,
+        /// An unknown error occurred.
+        Unknown,
+        /// System error occurred.
+        SystemError,
+        /// Requested stream was not found.
+        StreamNotFound,
+        /// Stream channel has already been closed.
+        StreamChannelClosed,
+        /// Read operation was attempted on a write-only stream.
+        ReadOnWriteStream,
+        /// Write operation was attempted on a read-only stream.
+        WriteOnReadStream,
+        /// Stream was already closed.
+        StreamClosed,
+        /// Streamed chunk exceeds size limits.
+        StreamChunkTooLarge
+    };
+
+    inline std::string to_string(StreamError e) {
+        switch (e) {
+            case StreamError::Success:
+                return "Stream: success";
+            case StreamError::EndOfStream:
+                return "Stream: end of stream";
+            case StreamError::Unknown:
+                return "Stream: unknown error";
+            case StreamError::SystemError:
+                return "Stream: system error";
+            case StreamError::StreamNotFound:
+                return "Stream: stream not found";
+            case StreamError::StreamChannelClosed:
+                return "Stream: stream channel is closed";
+            case StreamError::ReadOnWriteStream:
+                return "Stream: read attempted on write stream";
+            case StreamError::WriteOnReadStream:
+                return "Stream: write attempted on read stream";
+            case StreamError::StreamClosed:
+                return "Stream: stream is closed";
+            case StreamError::StreamChunkTooLarge:
+                return "Stream: stream chunk is too large";
         }
     }
 

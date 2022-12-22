@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_0',['error',['../namespaceedjx_1_1logger.html#aecd81da38014e619d52025ead956ede1',1,'edjx::logger']]]
+  ['close_0',['close',['../classedjx_1_1stream_1_1BaseStream.html#a797fd63b322521c2421df65d2032400a',1,'edjx::stream::BaseStream']]]
 ];

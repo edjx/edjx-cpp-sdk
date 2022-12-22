@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['remove_0',['remove',['../namespaceedjx_1_1kv.html#a2008252223639b69b2da8ab62230eb5d',1,'edjx::kv::remove()'],['../namespaceedjx_1_1storage.html#a96f4908ef9bb8ca844fa51cb5e862683',1,'edjx::storage::remove()']]]
+  ['open_5fread_5fstream_0',['open_read_stream',['../structedjx_1_1request_1_1HttpRequest.html#ae9c5ff89988b4dd578a79b0d8be4ff46',1,'edjx::request::HttpRequest']]],
+  ['operator_28_29_1',['operator()',['../structedjx_1_1http_1_1CaseInsensitiveKeys.html#a122171e440565bf8f93beee23f3ac4be',1,'edjx::http::CaseInsensitiveKeys']]]
 ];

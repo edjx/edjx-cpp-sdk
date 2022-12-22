@@ -6,6 +6,7 @@
 #include <string>
 
 #include "http.hpp"
+#include "stream.hpp"
 #include "error.hpp"
 
 namespace edjx {
@@ -201,12 +202,25 @@ namespace response {
         const std::vector<uint8_t> & get_body() const;
 
         /**
-         * @brief Send the response to the client.
+         * @brief Sends the response to the client.
          * 
          * @return Returns edjx::error::HttpError::Success on success,
          * some other value on failure.
          */
         edjx::error::HttpError send();
+
+        /**
+         * @brief Sends the response to the client using streaming.
+         * 
+         * This method opens a write stream for the response to the client.
+         * 
+         * `send_streaming()` and `send()` cannot be used at the same time.
+         * 
+         * @param write_stream The write stream handle will be copied to this object.
+         * @return Returns edjx::error::HttpError::Success on success,
+         * some other value on failure.
+         */
+        edjx::error::HttpError send_streaming(edjx::stream::WriteStream & write_stream);
     };
 
 }}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['status_0',['status',['../structedjx_1_1fetch_1_1FetchResponse.html#a0c167f4c528c770e03ea8f1ca79a5177',1,'edjx::fetch::FetchResponse::status()'],['../structedjx_1_1response_1_1HttpResponse.html#a83f288d45beae1e8472d93fee5fd9965',1,'edjx::response::HttpResponse::status()']]]
+  ['properties_0',['properties',['../structedjx_1_1storage_1_1FileAttributes.html#a4b2dbe91f696775afd78635900de5078',1,'edjx::storage::FileAttributes']]],
+  ['properties_5fpresent_1',['properties_present',['../structedjx_1_1storage_1_1FileAttributes.html#a3589eefa09948c40c14757464df2ad45',1,'edjx::storage::FileAttributes']]]
 ];

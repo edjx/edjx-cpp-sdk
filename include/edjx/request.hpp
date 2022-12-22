@@ -6,6 +6,7 @@
 #include <map>
 
 #include "http.hpp"
+#include "stream.hpp"
 #include "error.hpp"
 
 namespace edjx {
@@ -22,6 +23,8 @@ namespace request {
      * method, and URL.
      */
     struct HttpRequest {
+        /// Whether this object has been initialized or not
+        bool initialized;
         /// HTTP version of the request
         http::HttpVersion version;
         /// HTTP method of the request
@@ -30,19 +33,15 @@ namespace request {
         http::Uri uri;
         /// HTTP headers of the request
         edjx::http::HttpHeaders headers;
-        /// True if the request body was fetched
-        bool body_present;
-        /// Request body
-        std::vector<uint8_t> body;
 
         /**
          * @brief Creates an empty request object with HTTP version set
          * to HTTP/1.1, HTTP method of NONE, and no body.
          */
         HttpRequest()
-            : version(http::HttpVersion::HTTP_11),
-            method(http::HttpMethod::NONE),
-            body_present(false) {}
+            : initialized(false),
+            version(http::HttpVersion::HTTP_11),
+            method(http::HttpMethod::NONE) {}
 
 
         /**
@@ -55,13 +54,10 @@ namespace request {
          * (main.cpp) uses this method to fetch HTTP Request.
          * 
          * @param result HttpRequest in which the request will be stored
-         * @param prefetch_body By passing the `prefetch_body` flag as true,
-         * the whole request body will be read from request at this function
-         * call time and then reside in the function memory.
          * @return Returns edjx::error::HttpError::Success on success,
          * some other value if execution failed.
          */
-        static edjx::error::HttpError from_client(HttpRequest & result, bool prefetch_body);
+        static edjx::error::HttpError from_client(HttpRequest & result);
 
         /**
          * @brief Returns the HTTP method of the request.
@@ -90,33 +86,24 @@ namespace request {
         const edjx::http::HttpHeaders & get_headers() const;
 
         /**
-         * @brief Fetches the request body.
+         * @brief Fetches the request body and returns the body as bytes.
          * 
-         * If the HTTP request body was not prefetched in the `from_client`
-         * function, it can be fetched by invoking this method.
-         * 
+         * @param result Received body bytes will be stored here.
          * @return Returns edjx::error::HttpError::Success on success,
          * some other value on failure.
          */
-        edjx::error::HttpError fetch_body();
+        edjx::error::HttpError read_body(std::vector<uint8_t> & result);
 
         /**
-         * @brief Checks whether the request body has been fetched.
+         * @brief Opens a read stream to read the request body.
          * 
-         * @return true Request body was fetched.
-         * @return false Request body has not been fetched.
+         * `read_body()` and `open_read_stream()` cannot be used at the same time.
+         * 
+         * @param result HTTP request body read stream
+         * @return Returns edjx::error::HttpError::Success on success,
+         * some other value on failure.
          */
-        bool is_body_present() const;
-
-        /**
-         * @brief Returns the body associated with the request as bytes.
-         * 
-         * If the HTTP request body was not prefetched, `fetch_body` must
-         * be called first.
-         * 
-         * @return Request body
-         */
-        const std::vector<uint8_t> & get_body() const;
+        edjx::error::HttpError open_read_stream(edjx::stream::ReadStream & result);
     };
 
 }}

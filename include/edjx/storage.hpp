@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "stream.hpp"
 #include "error.hpp"
 
 namespace edjx {
@@ -18,8 +19,8 @@ namespace storage {
     struct StorageResponse {
         /// HTTP headers of the response
         std::map<std::string, std::string> headers;
-        /// Body of the response
-        std::vector<uint8_t> body;
+        /// Body of the response as a read stream
+        edjx::stream::ReadStream read_stream;
 
         /**
          * @brief Constructs a response with no headers and an empty body.
@@ -31,13 +32,13 @@ namespace storage {
          * to the provided values.
          * 
          * @param headers HTTP headers for the response
-         * @param body Body for the response
+         * @param read_stream Read stream for the body of the response
          */
         inline StorageResponse(
             const std::map<std::string, std::string> & headers,
-            const std::vector<uint8_t> & body
+            const edjx::stream::ReadStream & read_stream
         ) : headers(headers),
-            body(body) {}
+            read_stream(read_stream) {}
 
         /**
          * @brief Returns the metadata associated with the storage object.
@@ -47,11 +48,51 @@ namespace storage {
         const std::map<std::string, std::string> & get_headers() const;
 
         /**
-         * @brief Returns the bytes of the storage object.
+         * @brief Retrieves the bytes of the storage object.
          * 
-         * @return Response body
+         * @param result Response body
+         * @return Returns StorageError::Success on success,
+         * StorageError::Success::EndOfStream when end of stream is reached,
+         * or some other value on failure.
          */
-        const std::vector<uint8_t> & get_body() const;
+        edjx::error::StreamError read_body(std::vector<uint8_t> & result);
+
+        /**
+         * @brief Returns a read stream for the storage object.
+         * 
+         * @return Read stream
+         */
+        const edjx::stream::ReadStream & get_read_stream() const;
+    };
+
+    /**
+     * @brief Placeholder for storage response used in streaming methods
+     * when the response is not available immediately.
+     */
+    struct StorageResponsePending {
+        /// Stream descriptor
+        uint32_t sd;
+
+        /**
+         * @brief Constructs an uninitialized response holder.
+         */
+        StorageResponsePending() {}
+        /**
+         * @brief Constructs a response holder for a stream identified
+         * by the stream descriptor `sd`.
+         * 
+         * @param sd Stream descriptor
+         */
+        StorageResponsePending(uint32_t sd) : sd(sd) {}
+
+        /**
+         * @brief Attempts to retrieve the storage response if it is ready.
+         * 
+         * @param result Retrieved storage response
+         * @return Returns edjx::error::StorageError::Success on success,
+         * some other value otherwise.
+         */
+        edjx::error::StorageError get_storage_response(StorageResponse & result);
     };
 
     /**
@@ -125,6 +166,33 @@ namespace storage {
         const std::string & file_name,
         const std::string & properties,
         const std::vector<uint8_t> contents
+    );
+
+    /**
+     * @brief Starts streaming a file to the EDJX Object Store.
+     * 
+     * This method returns two objects, an edjx::stream::WriteStream and
+     * a StorageResponsePending.
+     * The edjx::stream::WriteStream is used to stream data, and the
+     * StorageResponsePending is a placeholder to retreive the
+     * StorageResponse response from the storage.
+     * 
+     * @param response_streaming If successful, this method will populate
+     * this argument with a placeholder for the storage response.
+     * @param write_stream If successful, this method will populate this
+     * argument with a write stream to be used for streaming the data.
+     * @param bucket_id Bucket ID (where to put the file)
+     * @param file_name File name
+     * @param properties Properties of the file
+     * @return Returns edjx::error::StorageError::Success on success,
+     * some other value on failure
+     */
+    edjx::error::StorageError put_streaming(
+        StorageResponsePending & response_streaming,
+        edjx::stream::WriteStream & write_stream,
+        const std::string & bucket_id,
+        const std::string & file_name,
+        const std::string & properties
     );
 
     /**

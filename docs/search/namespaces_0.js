@@ -9,5 +9,6 @@ var searchData=
   ['request_6',['request',['../namespaceedjx_1_1request.html',1,'edjx']]],
   ['response_7',['response',['../namespaceedjx_1_1response.html',1,'edjx']]],
   ['storage_8',['storage',['../namespaceedjx_1_1storage.html',1,'edjx']]],
-  ['utils_9',['utils',['../namespaceedjx_1_1utils.html',1,'edjx']]]
+  ['stream_9',['stream',['../namespaceedjx_1_1stream.html',1,'edjx']]],
+  ['utils_10',['utils',['../namespaceedjx_1_1utils.html',1,'edjx']]]
 ];

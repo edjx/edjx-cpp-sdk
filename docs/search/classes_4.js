@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uri_0',['Uri',['../classedjx_1_1http_1_1Uri.html',1,'edjx::http']]]
+  ['readstream_0',['ReadStream',['../classedjx_1_1stream_1_1ReadStream.html',1,'edjx::stream']]]
 ];

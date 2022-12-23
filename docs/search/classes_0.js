@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['caseinsensitivekeys_0',['CaseInsensitiveKeys',['../structedjx_1_1http_1_1CaseInsensitiveKeys.html',1,'edjx::http']]]
+  ['basestream_0',['BaseStream',['../classedjx_1_1stream_1_1BaseStream.html',1,'edjx::stream']]]
 ];

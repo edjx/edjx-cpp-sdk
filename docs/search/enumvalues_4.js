@@ -11,7 +11,10 @@ var searchData=
   ['http_5f2_8',['HTTP_2',['../namespaceedjx_1_1http.html#a0df0100fb78b582249e0e3b334d518eead1ea3abbe73fec0b8ae7b3454a9430c6',1,'edjx::http']]],
   ['http_5f3_9',['HTTP_3',['../namespaceedjx_1_1http.html#a0df0100fb78b582249e0e3b334d518eea1ab655a8e2067e2ae97d49e5da3713e6',1,'edjx::http']]],
   ['httpbodytoolarge_10',['HTTPBodyTooLarge',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326a059bbe04d21c1dfb59c45787d905f20b',1,'edjx::error']]],
-  ['httpinvalidmethod_11',['HTTPInvalidMethod',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326aada914b715250ea32c7ca7e3361b58fd',1,'edjx::error']]],
-  ['httpinvalidstatuscode_12',['HTTPInvalidStatusCode',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326ae59514bbb7d98dc6fb73eaaaece50db4',1,'edjx::error']]],
-  ['httpinvalidversion_13',['HTTPInvalidVersion',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326aeea2b3756202e0fb00c6316d181bb47b',1,'edjx::error']]]
+  ['httpchannelclosed_11',['HTTPChannelClosed',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326a95bcb8d88a1fd86f9f118ac6b6fc04de',1,'edjx::error']]],
+  ['httpfetchrequestfailed_12',['HTTPFetchRequestFailed',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326ab3a6af10e637f626dffb693c87438f5d',1,'edjx::error']]],
+  ['httpfetchresponsenotfound_13',['HTTPFetchResponseNotFound',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326a76fc5f1317e58ab3f75f931fbe1aff8d',1,'edjx::error']]],
+  ['httpinvalidmethod_14',['HTTPInvalidMethod',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326aada914b715250ea32c7ca7e3361b58fd',1,'edjx::error']]],
+  ['httpinvalidstatuscode_15',['HTTPInvalidStatusCode',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326ae59514bbb7d98dc6fb73eaaaece50db4',1,'edjx::error']]],
+  ['httpinvalidversion_16',['HTTPInvalidVersion',['../namespaceedjx_1_1error.html#a4ed59b0ec94e84fcc3599d35ed21e326aeea2b3756202e0fb00c6316d181bb47b',1,'edjx::error']]]
 ];

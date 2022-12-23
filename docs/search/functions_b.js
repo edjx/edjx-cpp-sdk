@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['to_5fbytes_0',['to_bytes',['../namespaceedjx_1_1utils.html#a0bc4d981ca49cf96020e09d08de1caa6',1,'edjx::utils']]],
-  ['to_5fhttp_5fstatus_5fcode_1',['to_http_status_code',['../namespaceedjx_1_1error.html#a2b2ad65fa2a944d43aeda62320dde94c',1,'edjx::error']]],
-  ['to_5fstring_2',['to_string',['../namespaceedjx_1_1error.html#ab1f78f9d299883fcd725dbe8dfdd808c',1,'edjx::error::to_string(HttpError e)'],['../namespaceedjx_1_1error.html#a53c5f405e9b1dbdbcbc07df8c139599b',1,'edjx::error::to_string(KVError e)'],['../namespaceedjx_1_1error.html#ad0bf936586bc8ea6502844dfddc796a8',1,'edjx::error::to_string(StorageError e)'],['../namespaceedjx_1_1utils.html#a6bc3a21f0ade68ec8fc4f15c41390cc5',1,'edjx::utils::to_string()']]],
-  ['trace_3',['trace',['../namespaceedjx_1_1logger.html#a3ee585cd9d5b46eef6dbd62ea51673fe',1,'edjx::logger']]]
+  ['read_5fall_0',['read_all',['../classedjx_1_1stream_1_1ReadStream.html#a4d8c8eba0d263fee129b975a194170a8',1,'edjx::stream::ReadStream']]],
+  ['read_5fbody_1',['read_body',['../structedjx_1_1fetch_1_1FetchResponse.html#a5fdfdc88d06bd1a615be8c9e529cca75',1,'edjx::fetch::FetchResponse::read_body()'],['../structedjx_1_1request_1_1HttpRequest.html#aaa8fc0ca2848d23f3d1ad9e5dd4ecb31',1,'edjx::request::HttpRequest::read_body()'],['../structedjx_1_1storage_1_1StorageResponse.html#a6e7c43fb176640ec1599c55901688c5b',1,'edjx::storage::StorageResponse::read_body()']]],
+  ['read_5fchunk_2',['read_chunk',['../classedjx_1_1stream_1_1ReadStream.html#aa7ef4a342c9f57b71d0fb7540a5a5098',1,'edjx::stream::ReadStream']]],
+  ['readstream_3',['ReadStream',['../classedjx_1_1stream_1_1ReadStream.html#ab961e18e3ec640ee39e75046faa90bb9',1,'edjx::stream::ReadStream::ReadStream()'],['../classedjx_1_1stream_1_1ReadStream.html#aea72de627743faa011002249d110fd2e',1,'edjx::stream::ReadStream::ReadStream(uint32_t sd)']]],
+  ['remove_4',['remove',['../namespaceedjx_1_1kv.html#a2008252223639b69b2da8ab62230eb5d',1,'edjx::kv::remove()'],['../namespaceedjx_1_1storage.html#a96f4908ef9bb8ca844fa51cb5e862683',1,'edjx::storage::remove()']]]
 ];
